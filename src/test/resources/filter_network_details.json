@@ -1,0 +1,13 @@
+{
+  "network": {
+    "href": "/v2/networks/visa-frankfurt",
+    "id": "visa-frankfurt",
+    "location": {
+      "city": "Frankfurt",
+      "country": "DE",
+      "latitude": 50.1072,
+      "longitude": 8.66375
+    },
+    "name": "VISA"
+  }
+}

@@ -11,6 +11,7 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 
+import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
@@ -71,6 +72,24 @@ public class RetrieveCompanyDetails {
     @And("the response should confirm the defined schema")
     public void theResponseShouldConfirmTheDefinedSchema() {
         response.then().assertThat().body(matchesJsonSchemaInClasspath("retrieve_network_for_id.json"));
+
+    }
+
+    @When("I request the service to give the company details with id {string} using the following filers")
+    public void iRequestTheServiceToGiveTheCompanyDetailsWithIdUsingTheFollowingFilers(String networkId, List<String> filterFields) {
+        response = request
+                .spec(requestSpec)
+                .when()
+                    .queryParam("fields",String.join(", ", filterFields))
+                    .get("/"+ networkId);
+        response.then().log().all();
+    }
+
+    @Then("I should see the response is filtered")
+    public void iShouldSeeTheResponseIsFiltered() {
+        response.then()
+                .spec(responseSpec)
+                .assertThat().body(matchesJsonSchemaInClasspath("filter_network_details.json"));
 
     }
 }

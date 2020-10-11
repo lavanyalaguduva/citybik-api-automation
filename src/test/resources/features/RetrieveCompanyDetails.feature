@@ -15,4 +15,12 @@ Feature: Get company details from citybik network
       | network.location.latitude  | 50.1072 |
       | network.location.longitude | 8.66375 |
     And the response should confirm the defined schema
+
+  Scenario: Filter the response
+    When I request the service to give the company details with id "visa-frankfurt" using the following filers
+      | id       |
+      | name     |
+      | href     |
+      | location |
+    Then I should see the response is filtered
  
