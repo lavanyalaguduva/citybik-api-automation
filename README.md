@@ -6,7 +6,7 @@ This automation suite tests the Citybik service GET methods
 ##### Features
 Test scenarios have been written using Cucumber.
 The feature files are under `src/test/resources/features`. 
-Mainly 2 scenarios have been automated. 
+Mainly 3 scenarios have been automated. 
 1. Get all the company details in citybik network
    - Endpoint: http://api.citybik.es/v2/networks
    - Checks: Status code, No of companies
@@ -15,6 +15,10 @@ Mainly 2 scenarios have been automated.
     - Endpoint: http://api.citybik.es/v2/networks/<network_id>
     - Network_id: visa-frankfurt
     - Checks: Status code, Country(DE), Latitude, Longitude, Schema  
+    
+3. Filter the response
+    - Endpoint: http://api.citybik.es/v2/networks/<netwrok_id>?fields=id,name,href,location
+    - Checks: Status code, Schema to contain only the fields in the query param
 
 ##### StepDefs
 Includes the step definitions, assertions. 
